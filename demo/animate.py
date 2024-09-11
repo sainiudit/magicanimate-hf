@@ -181,6 +181,8 @@ class MagicAnimate():
             samples_per_video.append(control[:, :, :original_length])
 
             samples_per_video.append(sample[:, :, :original_length])
+            genrated_video=[sample[:, :, :original_length]]
+            genrated_video=torch.cat(genrated_video)
 
             samples_per_video = torch.cat(samples_per_video)
 
@@ -190,6 +192,7 @@ class MagicAnimate():
 
             os.makedirs(savedir, exist_ok=True)
             save_videos_grid(samples_per_video, animation_path)
+            save_videos_grid(genrated_video, f"{savedir}/{time_str}_genrated.mp4")
             
             return animation_path
             
